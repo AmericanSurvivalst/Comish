@@ -258,6 +258,58 @@ tr:hover{background:var(--bg2)}
 .comm-label{color:var(--text2)}
 .comm-value{font-weight:600}
 .empty{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.view-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:4px;margin-right:auto}
+.view-toggle button{padding:0.5rem 1rem;border:none;background:none;color:var(--muted);font-size:0.85rem;font-weight:500;cursor:pointer;border-radius:6px;transition:all 0.2s}
+.view-toggle button.active{background:var(--accent);color:#000}
+.monthly-section{margin-top:1.5rem}
+.monthly-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.monthly-title{font-weight:600;font-size:1.1rem}
+.monthly-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:1200px){.monthly-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.monthly-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.monthly-grid{grid-template-columns:1fr}}
+.month-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:all 0.2s}
+.month-card:hover{border-color:var(--accent)}
+.month-card.current{border-color:var(--accent);background:linear-gradient(135deg,var(--card),rgba(0,255,136,0.05))}
+.month-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem}
+.month-name{font-weight:600;font-size:0.95rem}
+.month-badge{font-size:0.7rem;padding:0.2rem 0.5rem;border-radius:20px;background:rgba(0,255,136,0.15);color:var(--accent)}
+.month-stat{display:flex;justify-content:space-between;padding:0.35rem 0;font-size:0.85rem}
+.month-stat-label{color:var(--muted)}
+.month-stat-value{font-weight:600}
+.chart-section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-top:1.5rem}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
+.chart-title{font-weight:600}
+.chart-legend{display:flex;gap:1.5rem;font-size:0.8rem}
+.chart-legend-item{display:flex;align-items:center;gap:0.4rem;color:var(--text2)}
+.chart-legend-dot{width:10px;height:10px;border-radius:3px}
+.bar-chart{display:flex;align-items:flex-end;justify-content:space-between;height:200px;gap:0.5rem;padding:0 0.5rem}
+.bar-group{flex:1;display:flex;flex-direction:column;align-items:center;gap:0.5rem;max-width:80px}
+.bar-container{width:100%;height:180px;display:flex;align-items:flex-end;justify-content:center;gap:4px}
+.bar{width:45%;border-radius:4px 4px 0 0;transition:height 0.3s;min-height:2px;cursor:pointer;position:relative}
+.bar:hover{opacity:0.8}
+.bar.revenue{background:linear-gradient(180deg,var(--blue),var(--purple))}
+.bar.commission{background:linear-gradient(180deg,var(--accent),var(--accent2))}
+.bar-label{font-size:0.7rem;color:var(--muted);text-align:center}
+.bar-tooltip{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.75rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;z-index:10}
+.bar:hover .bar-tooltip{opacity:1}
+.yearly-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+@media(max-width:900px){.yearly-summary{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.yearly-summary{grid-template-columns:1fr}}
+.yearly-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.yearly-card.highlight{border-color:var(--accent);background:linear-gradient(135deg,var(--card),rgba(0,255,136,0.08))}
+.yearly-card-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem}
+.yearly-card-value{font-size:1.5rem;font-weight:700}
+.yearly-card-sub{font-size:0.8rem;color:var(--text2);margin-top:0.25rem}
+.quarter-compare{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+@media(max-width:900px){.quarter-compare{grid-template-columns:repeat(2,1fr)}}
+.quarter-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;transition:all 0.2s}
+.quarter-card:hover{border-color:var(--border)}
+.quarter-card.active{border-color:var(--accent)}
+.quarter-name{font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem}
+.quarter-revenue{font-size:1.25rem;font-weight:700;margin-bottom:0.25rem}
+.quarter-commission{font-size:0.9rem;color:var(--accent)}
+.quarter-deals{font-size:0.75rem;color:var(--muted);margin-top:0.5rem}
 .deal-modal .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:500px){.deal-modal .form-row{grid-template-columns:1fr}}
 .toggle-group{display:flex;background:var(--bg);border-radius:10px;padding:4px}
@@ -415,9 +467,11 @@ tr:hover{background:var(--bg2)}
 <nav class="dash-nav"><div class="logo">Com<span>ish</span></div><div class="user-menu"><span class="user-email" id="userEmail"></span><button class="btn btn-ghost" onclick="logout()">Log out</button></div></nav>
 <div class="dash-container">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+<div class="view-toggle"><button class="active" onclick="setView('quarter')">Quarter</button><button onclick="setView('year')">Year</button></div>
 <div style="display:flex;gap:0.75rem"><select id="yearSelect" onchange="render()" style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.625rem 1rem;color:var(--text)"></select><select id="quarterSelect" onchange="render()" style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.625rem 1rem;color:var(--text)"><option value="Q1">Q1</option><option value="Q2">Q2</option><option value="Q3">Q3</option><option value="Q4">Q4</option></select></div>
 <div style="display:flex;gap:0.75rem;flex-wrap:wrap"><button class="btn btn-secondary" onclick="exportCSV()">📤 Export</button><button class="btn btn-secondary" onclick="openSettings()">⚙️ Settings</button><button class="btn btn-primary" onclick="openDeal()">+ Add Deal</button></div>
 </div>
+<div id="quarterView">
 <div class="quick-entry">
 <div><label>Starting Point</label><div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.375rem"><span style="color:var(--muted);font-size:1.25rem">$</span><input type="number" id="startingPoint" placeholder="0" onchange="saveStarting()"></div><div class="hint">Revenue already closed this quarter before tracking</div></div>
 <div style="margin-left:auto;text-align:right"><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em">Quarterly Total</div><div style="font-size:2rem;font-weight:900;color:var(--accent)" id="qtdTotal">$0</div></div>
@@ -440,7 +494,30 @@ tr:hover{background:var(--bg2)}
 <div class="sidebar-cards">
 <div class="side-card"><div class="side-title">Commission by Tier</div><div id="tierBreakdown"></div><div class="comm-summary"><div class="comm-row"><span class="comm-label">1 Year Deals</span><span class="comm-value blue" id="y1Comm">$0</span></div><div class="comm-row"><span class="comm-label">2 Year Deals</span><span class="comm-value purple" id="y2Comm">$0</span></div><div class="comm-row total"><span class="comm-label">Total</span><span class="comm-value" id="totalComm">$0</span></div></div></div>
 <div class="side-card"><div class="side-title">Revenue</div><div class="comm-row"><span class="comm-label">1 Year</span><span class="comm-value blue" id="y1Rev">$0</span></div><div class="comm-row"><span class="comm-label">2 Year</span><span class="comm-value purple" id="y2Rev">$0</span></div><div class="comm-row total"><span class="comm-label">Deals Total</span><span class="comm-value" id="totalRev">$0</span></div></div>
-</div></div></div></div></div>
+</div></div></div>
+</div>
+<div id="yearView" class="hidden" style="padding:0 2rem 2rem;max-width:1400px;margin:0 auto">
+<div class="yearly-summary" id="yearlySummary"></div>
+<div class="chart-section">
+<div class="chart-header">
+<span class="chart-title">Monthly Performance</span>
+<div class="chart-legend">
+<div class="chart-legend-item"><span class="chart-legend-dot" style="background:linear-gradient(180deg,var(--blue),var(--purple))"></span>Revenue</div>
+<div class="chart-legend-item"><span class="chart-legend-dot" style="background:linear-gradient(180deg,var(--accent),var(--accent2))"></span>Commission</div>
+</div>
+</div>
+<div class="bar-chart" id="barChart"></div>
+</div>
+<div class="chart-section">
+<div class="chart-header"><span class="chart-title">Quarter Comparison</span></div>
+<div class="quarter-compare" id="quarterCompare"></div>
+</div>
+<div class="monthly-section">
+<div class="monthly-header"><span class="monthly-title">Monthly Breakdown</span></div>
+<div class="monthly-grid" id="monthlyGrid"></div>
+</div>
+</div>
+</div></div>
 <div class="modal-overlay deal-modal" id="dealModal"><div class="modal"><div class="modal-header"><h2 id="dealModalTitle">Add Deal</h2><button class="modal-close" onclick="closeDeal()">×</button></div><div class="modal-body"><input type="hidden" id="editId">
 <div class="form-group"><label class="form-label">Client Name</label><input type="text" class="form-input" id="dealName" placeholder="Acme Corp"></div>
 <div class="form-row"><div class="form-group"><label class="form-label">Amount ($)</label><input type="number" class="form-input" id="dealAmt" placeholder="50000"></div><div class="form-group"><label class="form-label">Close Date</label><input type="date" class="form-input" id="dealDate"></div></div>
@@ -479,6 +556,11 @@ function updateOnboardUI(){for(let i=1;i<=3;i++){$(`ob-step-${i}`).className='st
 function onboardBack(){if(onboardStep>1){onboardStep--;updateOnboardUI()}}
 async function onboardNext(){if(onboardStep<3){onboardStep++;updateOnboardUI()}else{const plan={user_id:user.id,quarterly_goal:parseFloat($('obGoal').value)||375000,tiers:JSON.stringify([0,parseFloat($('obTh2').value)||100,parseFloat($('obTh3').value)||125,parseFloat($('obTh4').value)||150]),rates_1yr:JSON.stringify([parseFloat($('obR1a').value)||6,parseFloat($('obR1b').value)||8,parseFloat($('obR1c').value)||10,parseFloat($('obR1d').value)||12]),rates_2yr:JSON.stringify([parseFloat($('obR2a').value)||8,parseFloat($('obR2b').value)||10,parseFloat($('obR2c').value)||12,parseFloat($('obR2d').value)||14])};const{data,error}=await supabase.from('comp_plans').insert(plan).select().single();if(error){toast('Error: '+error.message);return}await supabase.from('profiles').update({onboarded:true}).eq('id',user.id);compPlan=data;compPlan.tiers=JSON.parse(compPlan.tiers);compPlan.rates_1yr=JSON.parse(compPlan.rates_1yr);compPlan.rates_2yr=JSON.parse(compPlan.rates_2yr);showDashboard();toast('Setup complete!')}}
 function showDashboard(){$('onboarding').classList.add('hidden');$('dashboard').classList.remove('hidden');$('userEmail').textContent=user.email;initYear();$('quarterSelect').value=curQ();render()}
+let currentView='quarter';
+function setView(v){currentView=v;document.querySelectorAll('.view-toggle button').forEach(b=>b.classList.remove('active'));document.querySelector(`.view-toggle button:${v==='quarter'?'first':'last'}-child`).classList.add('active');$('quarterView').classList.toggle('hidden',v!=='quarter');$('yearView').classList.toggle('hidden',v!=='year');$('quarterSelect').style.display=v==='quarter'?'block':'none';if(v==='year')renderYearView()}
+function renderYearView(){const y=+$('yearSelect').value;const yearDeals=deals.filter(d=>d.close_date&&getY(d.close_date)===y);const months=[0,1,2,3,4,5,6,7,8,9,10,11];const monthData=months.map(m=>{const mDeals=yearDeals.filter(d=>getM(d.close_date)===m);const rev=mDeals.reduce((s,d)=>s+d.amount,0);const comm=calcMonthComm(mDeals,m,y);return{month:m,deals:mDeals.length,revenue:rev,commission:comm}});const totalRev=monthData.reduce((s,m)=>s+m.revenue,0);const totalComm=monthData.reduce((s,m)=>s+m.commission,0);const totalDeals=monthData.reduce((s,m)=>s+m.deals,0);const bestMonth=monthData.reduce((best,m)=>m.revenue>best.revenue?m:best,{revenue:0});const avgRev=totalRev/12;$('yearlySummary').innerHTML=`<div class="yearly-card highlight"><div class="yearly-card-label">Total Revenue</div><div class="yearly-card-value">${fmt(totalRev)}</div><div class="yearly-card-sub">${totalDeals} deals closed</div></div><div class="yearly-card highlight"><div class="yearly-card-label">Total Commission</div><div class="yearly-card-value green">${fmt(totalComm)}</div><div class="yearly-card-sub">YTD earnings</div></div><div class="yearly-card"><div class="yearly-card-label">Monthly Average</div><div class="yearly-card-value">${fmt(avgRev)}</div><div class="yearly-card-sub">revenue per month</div></div><div class="yearly-card"><div class="yearly-card-label">Best Month</div><div class="yearly-card-value">${bestMonth.revenue>0?mName(bestMonth.month):'N/A'}</div><div class="yearly-card-sub">${bestMonth.revenue>0?fmt(bestMonth.revenue):''}</div></div>`;const maxRev=Math.max(...monthData.map(m=>m.revenue),1);const maxComm=Math.max(...monthData.map(m=>m.commission),1);$('barChart').innerHTML=monthData.map(m=>`<div class="bar-group"><div class="bar-container"><div class="bar revenue" style="height:${(m.revenue/maxRev)*100}%"><div class="bar-tooltip">${fmt(m.revenue)}</div></div><div class="bar commission" style="height:${(m.commission/maxComm)*100}%"><div class="bar-tooltip">${fmt(m.commission)}</div></div></div><div class="bar-label">${mName(m.month).slice(0,3)}</div></div>`).join('');const quarters=['Q1','Q2','Q3','Q4'];const qData=quarters.map((q,i)=>{const qMonths=[i*3,i*3+1,i*3+2];const qDeals=yearDeals.filter(d=>qMonths.includes(getM(d.close_date)));const rev=qDeals.reduce((s,d)=>s+d.amount,0);const sp=startingPoints[y+'-'+q]||0;const comm=calcComm(qDeals,sp).total;return{q,revenue:rev,commission:comm,deals:qDeals.length}});const curQuarter=curQ();$('quarterCompare').innerHTML=qData.map(qd=>`<div class="quarter-card ${qd.q===curQuarter?'active':''}"><div class="quarter-name">${qd.q} ${y}</div><div class="quarter-revenue">${fmt(qd.revenue)}</div><div class="quarter-commission">${fmt(qd.commission)}</div><div class="quarter-deals">${qd.deals} deals</div></div>`).join('');const curMonth=curM();$('monthlyGrid').innerHTML=monthData.map(m=>`<div class="month-card ${m.month===curMonth&&y===curY()?'current':''}"><div class="month-card-header"><span class="month-name">${mName(m.month)}</span>${m.month===curMonth&&y===curY()?'<span class="month-badge">Current</span>':''}</div><div class="month-stat"><span class="month-stat-label">Revenue</span><span class="month-stat-value">${fmt(m.revenue)}</span></div><div class="month-stat"><span class="month-stat-label">Commission</span><span class="month-stat-value green">${fmt(m.commission)}</span></div><div class="month-stat"><span class="month-stat-label">Deals</span><span class="month-stat-value">${m.deals}</span></div></div>`).join('')}
+function calcMonthComm(mDeals,month,year){const q=month<3?'Q1':month<6?'Q2':month<9?'Q3':'Q4';const y=year;const allQDeals=deals.filter(d=>d.close_date&&getY(d.close_date)===y&&getQ(d.close_date)===q);const dealsBeforeMonth=allQDeals.filter(d=>getM(d.close_date)<month);const sp=startingPoints[y+'-'+q]||0;const revBefore=sp+dealsBeforeMonth.reduce((s,d)=>s+d.amount,0);const revAfter=revBefore+mDeals.reduce((s,d)=>s+d.amount,0);const commBefore=calcCommAtRev(revBefore);const commAfter=calcCommAtRev(revAfter);return commAfter-commBefore}
+function calcCommAtRev(rev){if(!compPlan)return 0;const goal=compPlan.quarterly_goal,tiers=compPlan.tiers,r1=compPlan.rates_1yr,r2=compPlan.rates_2yr;let comm=0;for(let i=0;i<tiers.length;i++){const tS=tiers[i]/100*goal,tE=i<tiers.length-1?tiers[i+1]/100*goal:Infinity;const revIn=Math.max(0,Math.min(rev,tE)-tS);if(revIn<=0)continue;const avgR=(r1[i]+r2[i])/2;comm+=revIn*avgR/100}return comm}
 function curQ(){const m=new Date().getMonth();return m<3?'Q1':m<6?'Q2':m<9?'Q3':'Q4'}
 function curY(){return new Date().getFullYear()}
 function curM(){return new Date().getMonth()}
