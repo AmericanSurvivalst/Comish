@@ -10,9 +10,12 @@
 :root{--bg:#000;--bg2:#0a0a0a;--card:#0d0d0d;--card2:#161616;--border:#262626;--text:#fff;--text2:#a3a3a3;--muted:#666;--accent:#00ff88;--accent2:#00cc6a;--glow:rgba(0,255,136,0.12);--blue:#3b82f6;--purple:#a855f7;--pink:#ec4899;--orange:#f97316;--yellow:#facc15}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px}
 a{color:inherit;text-decoration:none}
 .gradient-bg{position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(0,255,136,0.15),transparent),radial-gradient(ellipse 60% 40% at 100% 0%,rgba(59,130,246,0.1),transparent);pointer-events:none;z-index:0}
+.glow-1{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,255,136,0.12),transparent 70%);border-radius:50%;pointer-events:none;z-index:0}
+.glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,0.1),transparent 70%);border-radius:50%;pointer-events:none;z-index:0}
+.glow-3{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,0.1),transparent 70%);border-radius:50%;pointer-events:none;z-index:0}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
 nav .container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:1.5rem;font-weight:900;letter-spacing:-0.03em}
@@ -55,7 +58,10 @@ nav .links .btn{width:100%}
 .avatar:nth-child(4){background:linear-gradient(135deg,#f97316,#ea580c)}
 .social-proof p{color:var(--text2);font-size:0.95rem}
 .social-proof strong{color:var(--text)}
-.section{padding:8rem 2rem;position:relative;z-index:1}
+.section{padding:8rem 2rem;position:relative;z-index:1;overflow:hidden}
+.section::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.3),transparent);pointer-events:none}
+.section:nth-child(odd){background:linear-gradient(180deg,var(--bg),var(--bg2),var(--bg))}
+.section:nth-child(even){background:var(--bg)}
 .section .container{max-width:1100px;margin:0 auto}
 .section-label{text-align:center;color:var(--accent);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem}
 .section-title{text-align:center;font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:1rem}
@@ -111,7 +117,8 @@ nav .links .btn{width:100%}
 .step-content h3{font-size:1.25rem;font-weight:700;margin-bottom:0.5rem}
 .step-content p{color:var(--text2);font-size:1rem;line-height:1.6}
 @media(max-width:600px){.step{flex-direction:column;align-items:center;text-align:center}}
-.story-section{background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.story-section{background:linear-gradient(180deg,var(--bg2),var(--bg));position:relative;overflow:hidden}
+.story-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 .story-content{max-width:700px;margin:0 auto;text-align:center}
 .story-content p{color:var(--text2);font-size:1.1rem;line-height:1.8;margin-bottom:1.5rem}
 .story-content .signature{color:var(--text);font-weight:600;margin-top:2rem}
@@ -288,7 +295,7 @@ tr:hover{background:var(--bg2)}
 <div class="hero-buttons"><button class="btn btn-primary btn-lg" onclick="showAuth('signup')">Start Tracking Free</button><button class="btn btn-secondary btn-lg" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">See It In Action</button></div>
 <div class="social-proof"><div class="proof-avatars"><div class="avatar">S</div><div class="avatar">M</div><div class="avatar">J</div><div class="avatar">A</div></div><p>Joined by <strong>500+ reps</strong> this month</p></div>
 </div></section>
-<section class="section" id="demo"><div class="container">
+<section class="section" id="demo"><div class="glow-1" style="top:-200px;right:-200px"></div><div class="glow-2" style="bottom:-150px;left:-150px"></div><div class="container">
 <div class="section-label">See It In Action</div>
 <h2 class="section-title">Your commission, crystal clear</h2>
 <div class="demo-window"><div class="demo-header"><div class="demo-dots"><span></span><span></span><span></span></div><span style="flex:1;text-align:center;color:var(--muted);font-size:0.85rem">comish.app/dashboard</span><div style="width:60px"></div></div>
@@ -312,7 +319,7 @@ tr:hover{background:var(--bg2)}
 <div class="pain-card"><div class="pain-icon">🤯</div><p>"My comp plan has so many tiers and accelerators, even finance gets the math wrong."</p></div>
 <div class="pain-card"><div class="pain-icon">🤷</div><p>"Am I close to the next tier? How much is it worth? No clue."</p></div>
 </div></div></section>
-<section class="section" id="features"><div class="container">
+<section class="section" id="features"><div class="glow-3" style="top:100px;left:-100px"></div><div class="glow-2" style="bottom:0;right:-200px"></div><div class="container">
 <div class="section-label">Features</div>
 <h2 class="section-title">Everything you need. Nothing you don't.</h2>
 <div class="features-grid" style="margin-top:4rem">
@@ -340,7 +347,7 @@ tr:hover{background:var(--bg2)}
 <p>It does one thing really well: it tells you exactly what you are getting paid, broken down by tier, updated after every deal you close.</p>
 <p class="signature">Scott, Founder</p>
 </div></div></section>
-<section class="section" id="faq"><div class="container">
+<section class="section" id="faq"><div class="glow-1" style="top:-100px;left:50%;transform:translateX(-50%)"></div><div class="container">
 <h2 class="section-title">Questions? Answers.</h2>
 <div class="faq-grid" style="margin-top:4rem">
 <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does the free trial work?<span>+</span></div><div class="faq-a"><p>You get full access for 14 days, no credit card required. If you love it, subscribe for $12/month. If not, your data is deleted and you owe nothing.</p></div></div>
@@ -349,7 +356,7 @@ tr:hover{background:var(--bg2)}
 <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I export my data?<span>+</span></div><div class="faq-a"><p>Yes. You can export all your deals to CSV at any time. Your data is yours.</p></div></div>
 <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if I need help?<span>+</span></div><div class="faq-a"><p>Email scott@comish.app and I will personally respond within 24 hours. No support tickets, no chatbots.</p></div></div>
 </div></div></section>
-<section class="section" id="pricing" style="background:linear-gradient(180deg,var(--bg2),var(--bg))"><div class="container">
+<section class="section" id="pricing" style="background:linear-gradient(180deg,var(--bg2),var(--bg))"><div class="glow-2" style="top:50%;left:-200px;transform:translateY(-50%)"></div><div class="glow-3" style="top:50%;right:-150px;transform:translateY(-50%)"></div><div class="container">
 <h2 class="section-title">Simple pricing</h2>
 <p class="section-sub">No surprises. Just like your commission should be.</p>
 <div class="pricing-grid">
